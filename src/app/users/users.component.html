@@ -1,0 +1,112 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-7">
+      <div class="card">
+        <div class="card-header">Usuarios</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Email</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of usersArray">
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                {{ user.phone.contrycode }} {{ user.phone.citycode }}
+                {{ user.phone.number }}
+              </td>
+              <td (click)="edit(user)">
+                <i i-bs name="pen"></i>
+              </td>
+              <td (click)="delete(user)">
+                <i i-bs name="trash"></i>
+              </td>
+            </tr>
+            <tr *ngIf="usersArray.length === 0">
+              <td colspan="5">No hay usuarios para listar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ addOrEditHeader }}</h5>
+          <div class="form-group mt-4">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Nombre</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="selectedUser.name"
+              class="form-control mb-3"
+              required
+            />
+            <label for="exampleFormControlInput1" class="form-label"
+              >Email</label
+            >
+            <input
+              type="email"
+              [(ngModel)]="selectedUser.email"
+              class="form-control mb-3"
+              required
+            />
+            <label for="exampleFormControlInput1" class="form-label"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              [(ngModel)]="selectedUser.password"
+              class="form-control mb-3"
+              required
+            />
+            <div class="row">
+              <div class="col-md-4">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Código de país </label>
+                <input
+                  type="text"
+                  [(ngModel)]="selectedUser.phone.contrycode"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="col-md-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Código de ciudad </label
+                >
+                <input
+                  type="text"
+                  [(ngModel)]="selectedUser.phone.citycode"
+                  class="form-control mb-3"
+                  required
+                />
+              </div>
+              <div class="col-md-5">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Número</label
+                >
+                <input
+                  type="text"
+                  [(ngModel)]="selectedUser.phone.number"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <button (click)="addOrEdit()" href="#" class="btn btn-submit">
+            Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
